@@ -22,6 +22,7 @@ import { SONG_SEARCH } from '../redux/action/SongSearch';
 import idx from 'idx';
 import moment from 'moment';
 import { CLEAR_REDUCER_STATE } from '../redux/action/common';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const SongLookUp = (props) => {
   const [btnToggleItunesPrice, setBtnToggleItunesPrice] = useState(true);
@@ -82,7 +83,10 @@ const SongLookUp = (props) => {
 
     return (
       <View style={styles.itunesPriceList}>
-        <ScrollView scrollEnabled={true} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          nestedScrollEnabled={true}
+          showsVerticalScrollIndicator={false}
+        >
           <Text style={styles.dataTxt}>
             {strings.SONG_NAME + ': ' + (songName ? songName : '')}
           </Text>
@@ -121,7 +125,7 @@ const SongLookUp = (props) => {
 
     return (
       <View style={styles.itunesPriceList}>
-        <ScrollView scrollEnabled={true}>
+        <ScrollView nestedScrollEnabled={true}>
           <Text style={styles.itunesPlaylistText}>{lyrics ? lyrics : ''}</Text>
         </ScrollView>
       </View>
@@ -139,7 +143,10 @@ const SongLookUp = (props) => {
 
     return (
       <View style={styles.itunesPriceList}>
-        <ScrollView scrollEnabled={true} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          nestedScrollEnabled={true}
+          showsVerticalScrollIndicator={false}
+        >
           <Text style={styles.dataTxt}>
             {strings.SIMILAR_ARTIST +
               ': ' +
@@ -200,7 +207,10 @@ const SongLookUp = (props) => {
     );
   };
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.userNameTxtView}>
         <Text style={styles.titleTxt}>{strings.SONG_LOOK_UP}</Text>
       </View>
@@ -310,7 +320,7 @@ const SongLookUp = (props) => {
           onPress={() => props.navigation.navigate('User')}
         />
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
